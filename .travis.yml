@@ -14,4 +14,10 @@ after_success:
   - docker build -t fazlizekiqi/multi-nginx ./nginx
   - docker build -t fazlizekiqi/multi-server ./server
   - docker build -t fazlizekiqi/multi-worker ./worker
- 
+  # Log in to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take these images and push to them to docker HUB
+  - docker push fazlizekiqi/multi-client
+  - docker push fazlizekiqi/multi-nginx
+  - docker push fazlizekiqi/multi-server
+  - docker push fazlizekiqi/multi-worker
